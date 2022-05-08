@@ -1,1 +1,3 @@
 /starter/config.py
+venv
+*.pyc

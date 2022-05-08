@@ -18,4 +18,8 @@ az storage container create `
  --auth-mode $SCAuthMode `
  --public-access $SCPublicAccess
 
- 
+
+$file = '.\commands\StorageAccount\ip.json'
+az vm list-ip-addresses -g $RGName -n $VMName | Out-File $file
+
+$json = Get-Content $file -Raw | ConvertFrom-Json 

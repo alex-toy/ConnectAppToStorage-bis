@@ -2,10 +2,10 @@
 # resource Group :
 
 #southcentralus centralus francecentral
-$Global:RGLocation = "centralus"
+$Global:RGLocation = "francecentral"
 "resource Group Location : " + $RGLocation
 
-$Global:RGName = "cloud-demo"
+$Global:RGName = "connect-RG"
 "Resource Group Name : " + $RGName
 
 
@@ -39,18 +39,24 @@ $Global:storageSku = "Standard_HDD"
 $Global:SSHKeyName = "mySSHKey"
 "Secret key name : "  + $SSHKeyName
 
+$Global:SAKey = "SAKey"
+"Storage Account key name : "  + $SAKey
+
 
 
 ################################################################
 # SQL database :
 
 $Global:SQLAdminUser = "alexadmin"
+[System.Environment]::SetEnvironmentVariable('SQLAdminUser',$SQLAdminUser,[System.EnvironmentVariableTarget]::Machine)
 "SQL admin user : "  + $SQLAdminUser
 
 $Global:SQLAdminPassword = "p@ssword1234"
+[System.Environment]::SetEnvironmentVariable('SQLAdminPassword',$SQLAdminPassword,[System.EnvironmentVariableTarget]::Machine)
 "SQL Admin password : " + $SQLAdminPassword
 
 $Global:SQLServerName = "alexei-server-test2"
+[System.Environment]::SetEnvironmentVariable('SQLServerName',$SQLServerName + ".database.windows.net",[System.EnvironmentVariableTarget]::Machine)
 "SQL server name : " + $SQLServerName
 
 $Global:SQLLocation = "francecentral"
@@ -60,6 +66,7 @@ $Global:SQLEnablePublicNetwork = "true"
 "SQL enable public network : " + $SQLEnablePublicNetwork
 
 $Global:SQLBDName = "alexei-db-test"
+[System.Environment]::SetEnvironmentVariable('SQLBDName',$SQLBDName,[System.EnvironmentVariableTarget]::Machine)
 "DB name : " + $SQLBDName
 
 $Global:FirewallRuleName = "azureaccess"
@@ -68,12 +75,16 @@ $Global:FirewallRuleName = "azureaccess"
 $Global:ClientIPFirewallRuleName = "clientip"
 "ClientIP Firewall Rule Name : " + $ClientIPFirewallRuleName
 
+$Global:Tier = "Basic"
+"Tier : " + $Tier
+
 
 
 ################################################################
-# Storage :
+# Storage Account :
 
 $Global:SAName = "alexeisa"
+[System.Environment]::SetEnvironmentVariable('SAName',$SAName,[System.EnvironmentVariableTarget]::Machine)
 "Storage Account name : " + $SAName
 
 #southcentralus centralus francecentral
@@ -87,6 +98,7 @@ $Global:SASKU = "Standard_LRS"
 "Storage Account SKU : " + $SASKU
 
 $Global:SCName = "images"
+[System.Environment]::SetEnvironmentVariable('SCName',$SCName,[System.EnvironmentVariableTarget]::Machine)
 "Storage container name : " + $SCName
 
 $Global:SCAuthMode = "login"

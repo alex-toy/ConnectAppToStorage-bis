@@ -39,10 +39,12 @@ cd /path/to/web
 
 python3 -m venv venv
 
-source venv/bin/activate
+source venv/bin/activate #mac
+.\venv\Scripts\activate #windows
 
 pip install --upgrade pip 
 pip install -r requirements.txt
+pip install --upgrade pyodbc
 pip install flask_sqlalchemy flask_login  flask_session flask_wtf azure.storage msal
 
 python application.py
