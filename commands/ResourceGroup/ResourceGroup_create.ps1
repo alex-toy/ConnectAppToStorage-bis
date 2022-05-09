@@ -1,19 +1,13 @@
 ################################################################
-#LIST OF ALL LOCATIONS :
-
-#az account list-locations -o table
-
-
-################################################################
-#LIST OF ALL LOCATIONS :
-
-#az resource list --location $MyLocation
-
-
-################################################################
 #CREATE A RESOURCE GROUP :
 
-az group create --name $ResourceGroupName --location $MyLocation
+az group create --name $RGName --location $RGLocation
+
+
+#######################################################################
+# Next step :
+
+"Now run : commands\SQLServer\SQLServer_create.ps1"
 
 
 

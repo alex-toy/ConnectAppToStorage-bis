@@ -19,7 +19,9 @@ az storage container create `
  --public-access $SCPublicAccess
 
 
-$file = '.\commands\StorageAccount\ip.json'
-az vm list-ip-addresses -g $RGName -n $VMName | Out-File $file
+#######################################################################
+# Next step :
 
-$json = Get-Content $file -Raw | ConvertFrom-Json 
+"Now run : commands\StorageAccount\StorageAccount_keys.ps1"
+
+

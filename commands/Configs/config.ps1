@@ -5,7 +5,7 @@
 $Global:RGLocation = "francecentral"
 "resource Group Location : " + $RGLocation
 
-$Global:RGName = "connect-RG"
+$Global:RGName = "flask-app-rg"
 "Resource Group Name : " + $RGName
 
 
@@ -13,7 +13,7 @@ $Global:RGName = "connect-RG"
 ################################################################
 # VM :
 
-$Global:VMName = "linux-vm-west"
+$Global:VMName = "flask-linux-vm"
 "VM name : " + $VMName
 
 $Global:ImageName = "UbuntuLTS"
@@ -48,15 +48,12 @@ $Global:SAKey = "SAKey"
 # SQL database :
 
 $Global:SQLAdminUser = "alexadmin"
-[System.Environment]::SetEnvironmentVariable('SQLAdminUser',$SQLAdminUser,[System.EnvironmentVariableTarget]::Machine)
 "SQL admin user : "  + $SQLAdminUser
 
 $Global:SQLAdminPassword = "p@ssword1234"
-[System.Environment]::SetEnvironmentVariable('SQLAdminPassword',$SQLAdminPassword,[System.EnvironmentVariableTarget]::Machine)
 "SQL Admin password : " + $SQLAdminPassword
 
-$Global:SQLServerName = "alexei-server-test2"
-[System.Environment]::SetEnvironmentVariable('SQLServerName',$SQLServerName + ".database.windows.net",[System.EnvironmentVariableTarget]::Machine)
+$Global:SQLServerName = "flask-sql-server"
 "SQL server name : " + $SQLServerName
 
 $Global:SQLLocation = "francecentral"
@@ -65,8 +62,7 @@ $Global:SQLLocation = "francecentral"
 $Global:SQLEnablePublicNetwork = "true"
 "SQL enable public network : " + $SQLEnablePublicNetwork
 
-$Global:SQLBDName = "alexei-db-test"
-[System.Environment]::SetEnvironmentVariable('SQLBDName',$SQLBDName,[System.EnvironmentVariableTarget]::Machine)
+$Global:SQLBDName = "flask-db"
 "DB name : " + $SQLBDName
 
 $Global:FirewallRuleName = "azureaccess"
@@ -83,8 +79,7 @@ $Global:Tier = "Basic"
 ################################################################
 # Storage Account :
 
-$Global:SAName = "alexeisa"
-[System.Environment]::SetEnvironmentVariable('SAName',$SAName,[System.EnvironmentVariableTarget]::Machine)
+$Global:SAName = "flaskstorageaccount"
 "Storage Account name : " + $SAName
 
 #southcentralus centralus francecentral
@@ -97,8 +92,7 @@ $Global:SAKind = "BlockBlobStorage"
 $Global:SASKU = "Standard_LRS"
 "Storage Account SKU : " + $SASKU
 
-$Global:SCName = "images"
-[System.Environment]::SetEnvironmentVariable('SCName',$SCName,[System.EnvironmentVariableTarget]::Machine)
+$Global:SCName = "flask-images"
 "Storage container name : " + $SCName
 
 $Global:SCAuthMode = "login"
@@ -106,3 +100,25 @@ $Global:SCAuthMode = "login"
 
 $Global:SCPublicAccess = "container"
 "Storage container public access : " + $SCPublicAccess
+
+
+#######################################################################
+# Set config file :
+
+$file = ".\commands\Configs\var.cfg"
+
+(Get-Content -Path $file) | ForEach-Object { $_ = $_.split("=")[0]; $_ } | Set-Content -Path $file
+
+(Get-Content -Path $file) | ForEach-Object { $rep = 'SQL_SERVER=' + $SQLServerName; $_ -Replace 'SQL_SERVER', $rep } | Set-Content -Path $file
+(Get-Content -Path $file) | ForEach-Object { $rep = 'SQL_DATABASE=' + $SQLBDName; $_ -Replace 'SQL_DATABASE', $rep } | Set-Content -Path $file
+(Get-Content -Path $file) | ForEach-Object { $rep = 'SQL_USER_NAME=' + $SQLAdminUser; $_ -Replace 'SQL_USER_NAME', $rep } | Set-Content -Path $file
+(Get-Content -Path $file) | ForEach-Object { $rep = 'SQL_PASSWORD=' + $SQLAdminPassword; $_ -Replace 'SQL_PASSWORD', $rep } | Set-Content -Path $file
+
+(Get-Content -Path $file) | ForEach-Object { $rep = 'BLOB_ACCOUNT=' + $SAName; $_ -Replace 'BLOB_ACCOUNT', $rep } | Set-Content -Path $file
+(Get-Content -Path $file) | ForEach-Object { $rep = 'BLOB_CONTAINER=' + $SCName; $_ -Replace 'BLOB_CONTAINER', $rep } | Set-Content -Path $file
+
+
+#######################################################################
+# Next step :
+
+"Now run : commands\ResourceGroup\ResourceGroup_create.ps1"

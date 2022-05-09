@@ -21,16 +21,24 @@ az vm open-port `
     --name $VMName
 
 
-#IP addresses :
-$Global:IP = az vm list-ip-addresses -g $ResourceGroupName -n $VMName | Out-String
+# Get IP address
+$file = '.\commands\VirtualMachine\ip.json'
+az vm list-ip-addresses -g $RGName -n $VMName | Out-File $file
+
+$json = Get-Content $file -Raw | ConvertFrom-Json 
+
+#IP address :
+$Global:IP = $json.virtualMachine.network.publicIpAddresses.ipAddress
 "IP : " + $IP
 
-#Reset password
-# az vm user update `
-#   -n $VMName `
-#   -g $ResourceGroupName `
-#   -u $AdminUsername `
-#   -p ""
+
+#######################################################################
+# Next step :
+
+"Now run : commands\VirtualMachine\VM_connect.ps1 then run the generated scp and ssh commands, the deploy the flask app."
+
+
+
 
 
 

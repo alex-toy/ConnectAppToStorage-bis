@@ -1,9 +1,9 @@
 az network vnet subnet list `
-  -g $ResourceGroupName `
+  -g $RGName `
   --vnet-name linux-vm-westVNET
 
 
 az network vnet subnet show `
-    -g $ResourceGroupName `
+    -g $RGName `
     -n linux-vm-westVNET `
     --vnet-name linux-vm-westSubnet
