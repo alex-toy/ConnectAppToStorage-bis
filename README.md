@@ -1,10 +1,17 @@
 # Connecting Your App to Storage with Azure
 
-How to connect a Flask app to Azure SQL and Azure Blob Storage. In this project, everything is automated using Powershell scripts.
+THIS PROJECT IS NOT WORKING SO FAR !!!!
+VM size not available and app not connecting to blob storage.
+
+How to connect a Flask app to Azure SQL and Azure Blob Storage. In this project, everything is automated using Powershell scripts. 
 
 ## Procedure
 
-All steps bellow can be reduced to running *commands\steps.ps1*.
+All steps bellow can be reduced to :
+
+- run *commands\steps.ps1*.
+- connect to the VM and deploy the app
+- connect to the SQL database and run the scripts
 
 **Run the Config and create the resource group :**
 

@@ -5,7 +5,7 @@ import configparser
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 p1 = Path(os.path.abspath(os.curdir)).parent
-file_path = ".\commands\Configs\\var.cfg"
+file_path = "/home/alexadmin/app/var.cfg"
 p2 = Path(file_path)
 config_path = os.path.join(p1, p2)
 config = configparser.ConfigParser()

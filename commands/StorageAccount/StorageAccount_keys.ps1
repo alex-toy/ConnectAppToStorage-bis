@@ -18,7 +18,7 @@ $BLOB_STORAGE_KEY = $json[0].value
 #######################################################################
 # Set config file :
 
-$cfg_file = ".\commands\Configs\var.cfg"
+$cfg_file = $var_path
 
 (Get-Content -Path $cfg_file) | ForEach-Object { 
     $old = If ($_.split("=")[1]) {'BLOB_STORAGE_KEY=' + $_.split("=")[1]} Else {'BLOB_STORAGE_KEY'}

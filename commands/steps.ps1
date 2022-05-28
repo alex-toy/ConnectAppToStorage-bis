@@ -1,23 +1,20 @@
 ################################################################
-# resource Group :
+# Variables :
 
 #southcentralus centralus francecentral
 $Global:RGName = "flask-app-rg"
 $Global:RGLocation = "francecentral"
-$Global:var_path = "commands\Configs\var.cfg"
+$Global:application_path = "app"
+$Global:var_path = "app\var.cfg"
 
-
-
-################################################################
 # Secret key :
-
 $Global:SSHKeyName = "mySSHKey"
 $Global:SAKey = "SAKey"
 
 
 
 #######################################################################
-# Next step :
+# Steps :
 
 az group create --name $RGName --location $RGLocation
 

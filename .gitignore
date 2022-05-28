@@ -3,3 +3,5 @@ venv
 *.pyc
 /commands/StorageAccount/*.json
 /commands/Configs/var.cfg
+/var.cfg
+/app/var.cfg

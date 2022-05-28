@@ -2,6 +2,6 @@
 #DELETE A VM :
 
 az vm delete `
-   --resource-group $ResourceGroupName `
+   --resource-group $RGName `
    --name $VMName `
-    --yes
+   --yes

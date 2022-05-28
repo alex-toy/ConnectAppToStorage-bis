@@ -8,7 +8,8 @@
 
 $Global:VMName = "flask-linux-vm"
 $Global:ImageName = "UbuntuLTS"
-$Global:Size = "Standard_B1s"
+# Standard_B1ls Standard_L8s_v2
+$Global:Size = "Standard_B1ls" #linux machine??
 $Global:AdminUsername = "alexadmin"
 $Global:Port = "80"
 $Global:storageSku = "Standard_HDD"
