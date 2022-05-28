@@ -4,6 +4,8 @@ How to connect a Flask app to Azure SQL and Azure Blob Storage. In this project,
 
 ## Procedure
 
+All steps bellow can be reduced to running *commands\steps.ps1*.
+
 **Run the Config and create the resource group :**
 
 - Connect to your Azure account : az login

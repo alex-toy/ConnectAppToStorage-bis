@@ -1,3 +1,43 @@
+"###############################################################"
+"Now running : " + $MyInvocation.MyCommand.Path
+"###############################################################"
+
+
+################################################################
+# SQL database :
+
+$Global:SQLAdminUser = "alexadmin"
+$Global:SQLAdminPassword = "p@ssword1234"
+$Global:SQLServerName = "flask-sql-server"
+$Global:SQLLocation = "francecentral"
+$Global:SQLEnablePublicNetwork = "true"
+$Global:SQLBDName = "flask-db"
+$Global:FirewallRuleName = "azureaccess"
+$Global:ClientIPFirewallRuleName = "clientip"
+$Global:Tier = "Basic"
+
+
+
+#######################################################################
+"Set config file :"
+
+$file = ".\commands\Configs\var.cfg"
+$file = $var_path
+(Get-Content -Path $file) | ForEach-Object { 
+    if($_.split("=")[0] -like 'SQL_*') {
+        $new = $_.split("=")[0]; $new
+    } else {
+        $_
+    }
+} | Set-Content -Path $file
+
+(Get-Content -Path $file) | ForEach-Object { $rep = 'SQL_SERVER=' + $SQLServerName; $_ -Replace 'SQL_SERVER', $rep } | Set-Content -Path $file
+(Get-Content -Path $file) | ForEach-Object { $rep = 'SQL_DATABASE=' + $SQLBDName; $_ -Replace 'SQL_DATABASE', $rep } | Set-Content -Path $file
+(Get-Content -Path $file) | ForEach-Object { $rep = 'SQL_USER_NAME=' + $SQLAdminUser; $_ -Replace 'SQL_USER_NAME', $rep } | Set-Content -Path $file
+(Get-Content -Path $file) | ForEach-Object { $rep = 'SQL_PASSWORD=' + $SQLAdminPassword; $_ -Replace 'SQL_PASSWORD', $rep } | Set-Content -Path $file
+
+
+
 ################################################################
 #CREATE SQL SERVER :
 
